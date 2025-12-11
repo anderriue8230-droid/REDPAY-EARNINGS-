@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Support</title>
+<style>
+    :root{
+      --bg-start:#290000;
+      --bg-end:#000;
+      --card:rgba(255,255,255,0.07);
+      --accent:#e53935;
+      --muted:#bfaeae;
+      --radius:18px;
+      font-family:Arial, sans-serif;
+    }
+    body{
+      margin:0;
+      padding:20px;
+      background:radial-gradient(circle, var(--bg-start), var(--bg-end));
+      color:#fff;
+      text-align:center;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    h1{font-size:30px;margin-bottom:10px}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:25px;
+      margin:20px 0;
+      width:90%;
+      max-width:420px;
+    }
+    .icon{font-size:50px;margin-bottom:10px}
+    .btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      color:#fff;
+      margin-top:15px;
+      cursor:pointer;
+    }
+    .tg{background:#2A66FF}
+    .wa{background:#25D366}
+    .em{background:#E60000}
+    .logout{background:#e53935}
+    .support-hours{font-size:14px;margin-top:10px;opacity:0.8}
+</style>
+</head>
+
+<body>
+
+<h1>Support</h1>
+<p>We're here to help! Choose your preferred support channel</p>
+
+<!-- TELEGRAM -->
+<div class="card">
+    <div class="icon">📨</div>
+    <h2>Telegram</h2>
+    <p>Chat with us on Telegram</p>
+    <a href="https://t.me/Redpayagent1" target="_blank" rel="noopener">
+        <button class="btn tg">Open Telegram</button>
+    </a>
+</div>
+
+<!-- WHATSAPP -->
+<div class="card">
+    <div class="icon">💬</div>
+    <h2>WhatsApp</h2>
+    <p>Message us on WhatsApp</p>
+    <a href="https://wa.me/2348154206173" target="_blank" rel="noopener">
+        <button class="btn wa">Open WhatsApp</button>
+    </a>
+</div>
+
+<!-- EMAIL -->
+<div class="card">
+    <div class="icon">✉️</div>
+    <h2>Email</h2>
+    <p>Send us an email</p>
+    <a href="mailto:donbo123@gmail.com">
+        <button class="btn em">Send Email</button>
+    </a>
+</div>
+
+<!-- SUPPORT HOURS -->
+<div class="card">
+    <h3>Support Hours</h3>
+    <p class="support-hours">
+        24/7 Support - We're here for you around the clock <br><br>
+        Average response time: Within a few hours via email, or instantly via Live Chat, WhatsApp, and Telegram.
+    </p>
+</div>
+
+<!-- LOGOUT -->
+<div class="card">
+    <div class="icon">🚪</div>
+    <h2>Logout</h2>
+    <p>Sign out of your account permanently</p>
+    <button class="btn logout" id="logoutBtn" style="background: #e53935;">Logout</button>
+</div>
+
+<script>
+  document.getElementById('logoutBtn').addEventListener('click',()=>{
+    if(confirm('Are you sure you want to logout?')){
+      // clear all stored auth data
+      ['rp_phone','rp_pwd','registeredName','rp_balance','rp_userId','rp_email','rp_country','transactions','rp_claimed']
+        .forEach(k=>localStorage.removeItem(k));
+      window.location.replace('index.html');
+    }
+  });
+</script>
+
+</body>
+</html>
