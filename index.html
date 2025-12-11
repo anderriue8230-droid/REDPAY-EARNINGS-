@@ -110,7 +110,7 @@
                     <path d="M0 0 L60 30 M60 0 L0 30" stroke="#fff" stroke-width="6"/>
                     <path d="M0 0 L60 30 M60 0 L0 30" stroke="#c8102e" stroke-width="4"/>
                     <path d="M30 0 L30 30 M0 15 L60 15" stroke="#fff" stroke-width="8"/>
-                    <path d="M30 0 L30 30 M0 15 L60 15" stroke="#c8102e" stroke-width="4"/>
+                    <path d="M30 0 L30 30 M0 15 L60" stroke="#c8102e" stroke-width="4"/>
                   </svg>
                 </span>
                 <span>United Kingdom</span>
@@ -125,9 +125,8 @@
     </section>
   </div>
 
-<script type="module" src="main.js"></script>
+<!-- Auto-login check -->
 <script>
-  // auto-login check
   (function(){
     const phone = localStorage.getItem('rp_phone');
     const pwd   = localStorage.getItem('rp_pwd');
@@ -137,6 +136,15 @@
     }
   })();
 </script>
-</body>
-</html>
 
+<!-- Redirect on form submit -->
+<script>
+  const form = document.getElementById('authForm');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    window.location.href = 'dashboard.html';
+  });
+</script>
+
+</body>
+                  </html>
