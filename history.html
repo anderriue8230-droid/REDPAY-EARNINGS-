@@ -3,134 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transaction History</title>
+<title>Transaction History – RedPay</title>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #1a0000;
-        font-family: Arial, sans-serif;
-        color: white;
-    }
+  body {
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 25px 18px;
+    font-family: Arial, sans-serif;
+  }
 
-    .container {
-        max-width: 450px;
-        margin: auto;
-        padding: 20px;
-    }
+  .container {
+    max-width: 420px;
+    margin: auto;
+  }
 
-    h1 {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 28px;
-    }
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
 
-    .subtitle {
-        text-align: center;
-        color: #bbbbbb;
-        margin-bottom: 20px;
-    }
+  .transaction {
+    background: #160000;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .transaction {
-        background: #2a0000;
-        border: 1px solid #550000;
-        padding: 15px;
-        border-radius: 15px;
-        margin-bottom: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .left h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+  }
 
-    .title {
-        font-size: 16px;
-        font-weight: bold;
-    }
+  .left p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    opacity: 0.7;
+  }
 
-    .date {
-        font-size: 12px;
-        color: #ccc;
-    }
+  .amount {
+    font-weight: 800;
+    font-size: 15px;
+  }
 
-    .amount {
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .green {
-        color: #00ff00;
-    }
-
-    .red {
-        color: #ff3333;
-    }
+  .empty {
+    text-align: center;
+    margin-top: 50px;
+    color: #777;
+  }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-    <h1>Transaction History</h1>
-    <div class="subtitle">View all your recent transactions</div>
+  <h2>Transaction History</h2>
 
-    <div id="history-list"></div>
+  <div id="history-list">
+    <!-- Filled by app.js -->
+  </div>
 
 </div>
 
-<script>
-    // Load saved transactions from LocalStorage
-    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-
-    const historyList = document.getElementById("history-list");
-
-    function displayHistory() {
-        historyList.innerHTML = "";
-
-        if (transactions.length === 0) {
-            historyList.innerHTML = "<p style='text-align:center; color:#aaa;'>No transactions yet</p>";
-            return;
-        }
-
-        transactions.forEach(tx => {
-            const div = document.createElement("div");
-            div.className = "transaction";
-
-            div.innerHTML = `
-                <div>
-                    <div class="title">${tx.title}</div>
-                    <div class="date">${tx.date}</div>
-                </div>
-                <div class="amount ${tx.type === 'credit' ? 'green' : 'red'}">
-                    ${tx.type === 'credit' ? '+' : '-'} ₦${tx.amount}
-                </div>
-            `;
-
-            historyList.appendChild(div);
-        });
-    }
-
-    // Add transaction helper
-    function addTransaction(title, amount, type) {
-        let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-
-        transactions.push({
-            title: title,
-            amount: amount,
-            type: type, // "credit" or "debit"
-            date: new Date().toLocaleDateString()
-        });
-
-        localStorage.setItem("transactions", JSON.stringify(transactions));
-    }
-
-    // Make addTransaction available globally
-    window.addTransaction = addTransaction;
-
-    displayHistory();
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
-
